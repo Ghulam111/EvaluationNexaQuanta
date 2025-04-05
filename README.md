@@ -9,7 +9,7 @@ Follow the steps below to set up the project:
 
 ### 1. Clone the Repository
 
-Clone the repository to your local machine:
+Clone the repository(https://github.com/Ghulam111/EvaluationNexaQuanta.git) to your local machine:
 
 ```bash
 git clone <repository-url>
