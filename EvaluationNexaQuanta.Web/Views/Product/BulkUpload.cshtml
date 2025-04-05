@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "Bulk Upload Products";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label>Select CSV File</label>
+        <input type="file" name="csvFile" class="form-control" required />
+    </div>
+    <button type="submit" class="btn btn-primary mt-2">Upload</button>
+</form>
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-info mt-3">@ViewBag.Message</div>
+}
