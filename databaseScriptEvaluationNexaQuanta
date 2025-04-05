@@ -1,0 +1,67 @@
+
+
+
+CREATE TABLE Users (
+    Id INT IDENTITY PRIMARY KEY,
+    Username NVARCHAR(100) NOT NULL UNIQUE,
+    Password NVARCHAR(100) NOT NULL
+)
+
+
+CREATE TABLE Products (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    Name NVARCHAR(255) NOT NULL,
+    Price DECIMAL(18,2) CHECK (Price > 0),
+    Quantity INT CHECK (Quantity >= 0)
+);
+
+CREATE PROCEDURE sp_GetAllProducts
+AS
+BEGIN
+    SELECT Id, Name, Price, Quantity
+    FROM Products
+END
+
+
+CREATE PROCEDURE sp_InsertProduct
+    @Name NVARCHAR(100),
+    @Price DECIMAL(18, 2),
+    @Quantity INT
+AS
+BEGIN
+    INSERT INTO Products (Name, Price, Quantity)
+    VALUES (@Name, @Price, @Quantity)
+END
+
+
+CREATE PROCEDURE sp_UpdateProduct
+    @Id INT,
+    @Name NVARCHAR(100),
+    @Price DECIMAL(18, 2),
+    @Quantity INT
+AS
+BEGIN
+    UPDATE Products
+    SET Name = @Name,
+        Price = @Price,
+        Quantity = @Quantity
+    WHERE Id = @Id
+END
+
+
+CREATE PROCEDURE sp_DeleteProduct
+    @Id INT
+AS
+BEGIN
+    DELETE FROM Products
+    WHERE Id = @Id
+END
+
+CREATE PROCEDURE sp_GetProductById
+    @Id INT
+AS
+BEGIN
+    SELECT Id, Name, Price, Quantity
+    FROM Products
+    WHERE Id = @Id
+END
